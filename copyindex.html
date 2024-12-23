@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRUSH_VJ Portfolio</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #000000, #1a0f1f);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ff69b4;
+        }
+
+        .resume-btn {
+            background: transparent;
+            border: 1px solid #ff69b4;
+            color: #ff69b4;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .resume-btn:hover {
+            background-color: rgba(255, 105, 180, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(45deg, #a855f7, #ec4899, #3b82f6, #10b981);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientAnimation 8s ease infinite;
+        }
+
+        .typing-text {
+            background: linear-gradient(45deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background-color: #ffffff;
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .hero p {
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .linkedin-btn {
+            background-color: #a855f7;
+            color: white;
+        }
+
+        .linkedin-btn:hover {
+            background-color: #9333ea;
+        }
+
+        .cv-btn {
+            background-color: transparent;
+            border: 1px solid #a855f7;
+            color: #a855f7;
+        }
+
+        .cv-btn:hover {
+            background-color: rgba(168, 85, 247, 0.1);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 80px 0;
+        }
+
+        .skills h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .skill-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skill-card li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        /* Social Links */
+        .social-links {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 105, 180, 0.3);
+        }
+
+        .social-link img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .nav-links, .resume-btn {
+                display: none;
+            }
+
+            .social-links {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">JRUSH_VJ</div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#rocketry">Rocketry</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="resume-btn">Resume</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Hello, I'm <span class="animated-gradient-text">JERUSH.</span></h1>
+                <h2>I'm a <span id="typing-text" class="typing-text"></span><span class="typing-cursor"></span></h2>
+                <p>As someone deeply passionate about rockets, I am a motivated and versatile individual. Always excited to embrace new challenges, I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am prepared to make a meaningful contribution and achieve great things...</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-btn linkedin-btn">LinkedIn</a>
+                    <a href="#" class="cta-btn cv-btn">Download CV</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/400x400" alt="Astronaut floating">
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2>-- Skills --</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Development</h3>
+                    <ul>
+                        <li>Generative AI</li>
+                        <li>Web Development</li>
+                        <li>Game Development</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Design</h3>
+                    <ul>
+                        <li>3D Animation</li>
+                        <li>Video Editing</li>
+                        <li>3D Printing</li>
+                        <li>Model Designing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="social-links">
+        <a href="#" target="_blank" class="social-link">
+            <img src="assets/images/github_icon.png" alt="Instagram" width="40" height="40">
+        </a>
+        <a href="https://github.com/jrush-vj" target="_blank" class="social-link">
+            <img src="assets/images/github_icon.png" alt="GitHub" width="40" height="40">
+        </a>
+        <a href="#" target="_blank" class="social-link">
+            <img src="assets/images/linkedin_icon.png" alt="LinkedIn" width="40" height="40">
+        </a>
+    </div>
+
+    <script>
+        // JavaScript for handling smooth scrolling and active nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Typing animation with blinking cursor
+        const typingText = document.getElementById('typing-text');
+        const phrases = ['Web Developer', 'Guitarist', 'Chess Player'];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeText() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(typeText, 1500); // Wait before starting to delete
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(typeText, 500); // Wait before typing next phrase
+            } else {
+                setTimeout(typeText, isDeleting ? 50 : 100); // Typing speed
+            }
+        }
+
+        typeText(); // Start the typing animation
+    </script>
+</body>
+</html>
