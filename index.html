@@ -3,298 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JRUSH_VJ Portfolio</title>
+    <title>JERUSH - Neubrutalist Portfolio</title>
     <style>
-        body, html {
+        :root {
+            --home-image-width: 400px;
+            --home-image-height: 400px;
+            --home-image-top: -100px;
+            --home-image-right: 75px;
+        }
+        body {
+            font-family: monospace;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #000000, #1a0f1f);
-            color: white;
-            min-height: 100vh;
+            background-color: #fef9c3;
+            color: black;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1rem;
         }
-
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+            background-color: white;
+            border-bottom: 4px solid black;
+            z-index: 50;
         }
-
         nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            padding: 1rem;
         }
-
         .logo {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: bold;
         }
-
         .nav-links {
-            display: flex;
-            gap: 20px;
+            display: none;
         }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 1rem;
+            }
         }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: #ff69b4;
-        }
-
-        .resume-btn {
-            background: transparent;
-            border: 1px solid #ff69b4;
-            color: #ff69b4;
-            padding: 10px 20px;
-            border-radius: 5px;
+        .button {
+            padding: 0.5rem 1rem;
+            border: 2px solid black;
+            background-color: white;
+            color: black;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
-        .resume-btn:hover {
-            background-color: rgba(255, 105, 180, 0.1);
+        .button:hover {
+            background-color: #fef08a;
         }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 120px;
+        .button.active {
+            background-color: #fde047;
+        }
+        main {
+            padding-top: 6rem;
+        }
+        .section {
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 40px;
         }
-
-        .hero-content {
-            flex: 1;
+        .grid {
+            display: grid;
+            gap: 2rem;
+            position: relative;
         }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-
-        .hero h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
-
-        .animated-gradient-text {
-            background: linear-gradient(45deg, #a855f7, #ec4899, #3b82f6, #10b981);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradientAnimation 8s ease infinite;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
-
-        .typing-text {
-            background: linear-gradient(45deg, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        h2 {
+            font-size: 1.875rem;
+            margin-bottom: 1rem;
         }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1em;
-            background-color: #ffffff;
-            margin-left: 2px;
-            animation: blink 0.7s infinite;
+        .text-blue {
+            color: #2563eb;
         }
-
-        @keyframes blink {
-            0% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
+        .text-red {
+            color: #dc2626;
         }
-
-        .hero p {
-            color: #ccc;
-            margin-bottom: 30px;
-            line-height: 1.6;
+        .mb-8 {
+            margin-bottom: 2rem;
         }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
+        .space-x-4 > * + * {
+            margin-left: 1rem;
         }
-
-        .cta-btn {
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .linkedin-btn {
-            background-color: #a855f7;
+        .button-primary {
+            background-color: #3b82f6;
             color: white;
         }
-
-        .linkedin-btn:hover {
-            background-color: #9333ea;
+        .button-primary:hover {
+            background-color: #2563eb;
         }
-
-        .cv-btn {
-            background-color: transparent;
-            border: 1px solid #a855f7;
-            color: #a855f7;
+        .shadow-brutal {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
         }
-
-        .cv-btn:hover {
-            background-color: rgba(168, 85, 247, 0.1);
+        .hidden {
+            display: none;
         }
-
-        .hero-image {
-            flex: 1;
-            text-align: right;
+        @media (min-width: 768px) {
+            .md\:block {
+                display: block;
+            }
         }
-
-        .hero-image img {
+        img {
             max-width: 100%;
             height: auto;
+            border: 4px solid black;
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
         }
-
-        /* Skills Section */
-        .skills {
-            padding: 80px 0;
+        .home-image {
+            width: var(--home-image-width);
+            height: var(--home-image-height);
+            object-fit: cover;
+            position: absolute;
+            top: var(--home-image-top);
+            right: var(--home-image-right);
         }
-
-        .skills h2 {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 40px;
+        .form {
+            max-width: 28rem;
+            margin: 0 auto;
         }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .form > * + * {
+            margin-top: 1rem;
         }
-
-        .skill-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            backdrop-filter: blur(5px);
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid black;
+            background-color: white;
         }
-
-        .skill-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .skill-card ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .skill-card li {
-            margin-bottom: 10px;
-            color: #ccc;
-        }
-
-        /* Social Links */
         .social-links {
             position: fixed;
-            right: 20px;
+            right: 1rem;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 1rem;
         }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+        .social-button {
+            width: 3rem;
+            height: 3rem;
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            transition: background-color 0.3s;
-        }
-
-        .social-link:hover {
-            background-color: rgba(255, 105, 180, 0.3);
-        }
-
-        .social-link img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .section {
-            padding: 80px 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
         }
-
-        .section h2 {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 40px;
+        .project-card, .achievement-card {
+            background-color: white;
+            border: 2px solid black;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
         }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-image {
-                order: -1;
-            }
-
-            .nav-links, .resume-btn {
-                display: none;
-            }
-
-            .social-links {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin-top: 40px;
-            }
+        .text-center {
+            text-align: center;
         }
     </style>
 </head>
@@ -303,106 +181,133 @@
         <div class="container">
             <div class="logo">JRUSH_VJ</div>
             <div class="nav-links">
-                <a href="#home" class="active">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#rocketry">Rocketry</a>
-                <a href="#contact">Contact</a>
+                <button class="button active" data-section="home">Home</button>
+                <button class="button" data-section="projects">Projects</button>
+                <button class="button" data-section="achievements">Achievements</button>
+                <button class="button" data-section="rocketry">Rocketry</button>
+                <button class="button" data-section="contact">Contact</button>
             </div>
-            <button class="resume-btn">Resume</button>
+            <button class="button" id="resume-button">Resume</button>
         </div>
     </nav>
 
-    <div class="container">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Hello, I'm <span class="animated-gradient-text">JERUSH.</span></h1>
-                <h2>I'm a <span id="typing-text" class="typing-text"></span><span class="typing-cursor"></span></h2>
-                <p>As someone deeply passionate about rockets, I am a motivated and versatile individual. Always excited to embrace new challenges, I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am prepared to make a meaningful contribution and achieve great things...</p>
-                <div class="cta-buttons">
-                    <a href="#" class="cta-btn linkedin-btn">LinkedIn</a>
-                    <a href="#" class="cta-btn cv-btn">Download CV</a>
+    <main>
+        <section id="home" class="section">
+            <div class="container">
+                <div class="grid">
+                    <div>
+                        <h1>
+                            Hello, I'm <span class="text-blue">JERUSH.</span>
+                        </h1>
+                        <h2>
+                            I'm a <span class="text-red" id="typing-text"></span><span class="animate-pulse">|</span>
+                        </h2>
+                        <p class="mb-8">
+                            To be precise, I am a passionate game developer, skilled guitarist, and avid chess enthusiast. I love creating immersive gaming experiences, crafting melodious tunes, and strategizing on the chessboard.
+                        </p>
+                        <div class="space-x-4">
+                            <button class="button button-primary shadow-brutal" id="linkedin-button">LinkedIn</button>
+                            <button class="button shadow-brutal" id="download-cv-button">Download CV</button>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <img 
+                            src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=600&h=600" 
+                            alt="Space theme"
+                            class="home-image"
+                        />
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://via.placeholder.com/400x400" alt="Astronaut floating">
             </div>
         </section>
 
-        <section class="skills">
-            <h2>-- Skills --</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Programming</h3>
-                    <ul>
-                        <li>Python</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>Development</h3>
-                    <ul>
-                        <li>Generative AI</li>
-                        <li>Web Development</li>
-                        <li>Game Development</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>Design</h3>
-                    <ul>
-                        <li>3D Animation</li>
-                        <li>Video Editing</li>
-                        <li>3D Printing</li>
-                        <li>Model Designing</li>
-                    </ul>
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="text-center">Projects</h2>
+                <div class="grid">
+                    <div class="project-card">
+                        <h3>Space Invaders VR</h3>
+                        <p>A virtual reality remake of the classic arcade game, built using Unity and Oculus SDK.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Chess AI</h3>
+                        <p>An intelligent chess opponent powered by machine learning algorithms.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Guitar Hero Clone</h3>
+                        <p>A web-based rhythm game inspired by Guitar Hero, built with JavaScript and Web Audio API.</p>
+                    </div>
                 </div>
             </div>
         </section>
-    </div>
+
+        <section id="achievements" class="section">
+            <div class="container">
+                <h2 class="text-center">Achievements</h2>
+                <div class="grid">
+                    <div class="achievement-card">
+                        <h3>Game Dev Competition Winner</h3>
+                        <p>First place in the Annual Indie Game Developer Showdown 2023.</p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>Chess Tournament Champion</h3>
+                        <p>Winner of the Regional Chess Championship 2022.</p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>Music Composition Award</h3>
+                        <p>Recognized for Best Original Soundtrack in the Indie Game Music Festival 2023.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rocketry" class="section">
+            <div class="container">
+                <h2 class="text-center">Rocketry</h2>
+                <div class="grid">
+                    <div>
+                        <p>As an amateur rocketry enthusiast, I've been involved in several exciting projects:</p>
+                        <ul>
+                            <li>Built and launched a high-power rocket reaching an altitude of 10,000 feet</li>
+                            <li>Designed a custom flight computer for data logging and parachute deployment</li>
+                            <li>Participated in the Spaceport America Cup with a student rocketry team</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img 
+                            src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=600&h=400" 
+                            alt="Rocket launch"
+                            width="600"
+                            height="400"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="text-center">Contact</h2>
+                <form class="form" id="contact-form">
+                    <input type="text" placeholder="Your Name" required />
+                    <input type="email" placeholder="Your Email" required />
+                    <textarea placeholder="Your Message" rows="6" required></textarea>
+                    <button type="submit" class="button button-primary shadow-brutal">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <div class="social-links">
-        <a href="#" target="_blank" class="social-link">
-            <img src="assets/images/github_icon.png" alt="Instagram" width="40" height="40">
-        </a>
-        <a href="https://github.com/jrush-vj" target="_blank" class="social-link">
-            <img src="assets/images/github_icon.png" alt="GitHub" width="40" height="40">
-        </a>
-        <a href="#" target="_blank" class="social-link">
-            <img src="assets/images/linkedin_icon.png" alt="LinkedIn" width="40" height="40">
-        </a>
+        <button class="button social-button" id="instagram-button">I</button>
+        <button class="button social-button" id="github-button">G</button>
+        <button class="button social-button" id="linkedin-button-side">L</button>
     </div>
 
     <script>
-        // JavaScript for handling smooth scrolling and active nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Update active nav link on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 60) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Typing animation with blinking cursor
+        // Typing animation
         const typingText = document.getElementById('typing-text');
-        const phrases = ['Web Developer', 'Guitarist', 'Chess Player'];
+        const phrases = ['Game Developer', 'Guitarist', 'Chess Enthusiast'];
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -420,17 +325,84 @@
 
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
-                setTimeout(typeText, 1500); // Wait before starting to delete
+                setTimeout(typeText, 1500);
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(typeText, 500); // Wait before typing next phrase
+                setTimeout(typeText, 500);
             } else {
-                setTimeout(typeText, isDeleting ? 50 : 100); // Typing speed
+                setTimeout(typeText, isDeleting ? 50 : 100);
             }
         }
 
-        typeText(); // Start the typing animation
+        typeText();
+
+        // Navigation
+        const navButtons = document.querySelectorAll('.nav-links .button');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const sectionId = button.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const sectionTop = section.offsetTop - navHeight;
+                window.scrollTo({
+                    top: sectionTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Adjust scroll position on page load and resize
+        function adjustScrollPosition() {
+            const hash = window.location.hash;
+            if (hash) {
+                const section = document.querySelector(hash);
+                if (section) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const sectionTop = section.offsetTop - navHeight;
+                    window.scrollTo(0, sectionTop);
+                }
+            }
+        }
+
+        window.addEventListener('load', adjustScrollPosition);
+        window.addEventListener('resize', adjustScrollPosition);
+
+
+        // Form submission (prevent default for demo)
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Form submitted! (This is a demo, no actual submission occurred)');
+        });
+
+        // Button click handlers (for demo purposes)
+        document.getElementById('resume-button').addEventListener('click', () => {
+            alert('Resume button clicked! (This is a demo, no actual download occurred)');
+        });
+
+        document.getElementById('linkedin-button').addEventListener('click', () => {
+            alert('LinkedIn button clicked! (This is a demo, no actual navigation occurred)');
+        });
+
+        document.getElementById('download-cv-button').addEventListener('click', () => {
+            alert('Download CV button clicked! (This is a demo, no actual download occurred)');
+        });
+
+        document.getElementById('instagram-button').addEventListener('click', () => {
+            alert('Instagram button clicked! (This is a demo, no actual navigation occurred)');
+        });
+
+        document.getElementById('github-button').addEventListener('click', () => {
+            alert('GitHub button clicked! (This is a demo, no actual navigation occurred)');
+        });
+
+        document.getElementById('linkedin-button-side').addEventListener('click', () => {
+            alert('LinkedIn button (side) clicked! (This is a demo, no actual navigation occurred)');
+        });
     </script>
 </body>
 </html>
+
